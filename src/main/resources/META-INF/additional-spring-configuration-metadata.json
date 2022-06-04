@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "open.exhange.token",
+      "type": "java.lang.String",
+      "description": "Description for open.exhange.token."
+    },
+    {
+      "name": "giphy.api.key",
+      "type": "java.lang.String",
+      "description": "Description for giphy.api.key."
+    }
+  ] }
