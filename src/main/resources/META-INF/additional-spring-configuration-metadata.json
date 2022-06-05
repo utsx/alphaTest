@@ -9,5 +9,15 @@
       "name": "giphy.api.key",
       "type": "java.lang.String",
       "description": "Description for giphy.api.key."
+    },
+    {
+      "name": "open.exchange.token",
+      "type": "java.lang.String",
+      "description": "Description for open.exchange.token."
+    },
+    {
+      "name": "giphy.api.token",
+      "type": "java.lang.String",
+      "description": "Description for giphy.api.token."
     }
   ] }
