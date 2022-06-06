@@ -39,4 +39,8 @@ public class Answer {
                 ",<br> type='" + type + '\'' +
                 "<br>}";
     }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
 }

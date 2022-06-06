@@ -68,8 +68,8 @@ public class StartController {
         } catch (Exception e) {
             return new Answer("USD", exchange, null, null, "invalid", "https://media.giphy.com/media/f6OakvYpFx3H0ShU3L/giphy.gif", "Invalid exchange");
         }
-        return new Answer("USD", exchange, courseToday, courseYesterday, courseToday >= courseYesterday ? "rich" : "broke",
-                courseToday >= courseYesterday ?  parser.parseGiphy(giphyService.up(giphyToken)) :  parser.parseGiphy(giphyService.down(giphyToken)), "OK");
+        return new Answer("USD", exchange, courseToday, courseYesterday, courseToday < courseYesterday ? "rich" : "broke",
+                courseToday < courseYesterday ?  parser.parseGiphy(giphyService.up(giphyToken)) :  parser.parseGiphy(giphyService.down(giphyToken)), "OK");
     }
 
 

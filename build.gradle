@@ -41,6 +41,13 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
+test{
+	filter{
+		includeTestsMatching 'com.alpha.utsx.*'
+		includeTestsMatching 'com.alpha.utsx.StartControllerTest'
+	}
+}
+
 
 tasks.named('test') {
 	useJUnitPlatform()

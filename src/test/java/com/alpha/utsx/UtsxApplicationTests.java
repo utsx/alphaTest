@@ -1,7 +1,9 @@
 package com.alpha.utsx;
 
+import com.alpha.utsx.clients.GiphyService;
 import com.alpha.utsx.clients.OpenExchangeClient;
 import net.minidev.json.JSONUtil;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.Assert;
@@ -32,9 +34,39 @@ class UtsxApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;
 
+	@Value("${giphy.api.token}")
+	private String giphyToken;
+
+	@Value("${open.exchange.token}")
+	private String openExchangeToken;
+
+	private Answer answer;
+
+	@Autowired
+	private OpenExchangeClient openExchangeClient;
+
+	@Autowired
+	private GiphyService giphyService;
+
 	@Test
 	void contextLoads() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/RUB")).andExpect(status().isOk());
+	}
+
+	@Test
+	void openExchangeStatus() throws Exception {
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(openExchangeClient.latest(openExchangeToken));
+		Assertions.assertNotEquals(jsonObject.get("rates"), null);
+	}
+
+	@Test
+	void giphyStatus() throws Exception {
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(giphyService.up(giphyToken));
+		jsonObject = (JSONObject) jsonObject.get("meta");
+		int actual = (Integer.parseInt(String.valueOf(jsonObject.get("status"))));
+		Assertions.assertEquals(actual, 200);
 	}
 
 }
