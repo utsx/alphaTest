@@ -23,9 +23,9 @@ Connection: keep-alive
 <img src="{src}">
 {
 base='USD',
-askedExchange='RUB',
-todayCost=61.67,
-yesterdayCost=63.250003,
+askedExchange={exchange},
+todayCost={course},
+yesterdayCost={course},
 type='rich'
 }
 ```
