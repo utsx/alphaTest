@@ -13,21 +13,28 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.security.SecureRandom;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
 class UtsxApplicationTests {
 
+	@Autowired
+	private MockMvc mockMvc;
+
 	@Test
 	void contextLoads() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/RUB")).andExpect(status().isOk());
 	}
 
 }

@@ -31,10 +31,10 @@ public class StartController {
     @Value("${giphy.api.token}")
     private String giphyToken;
 
-    private Answer answer;
-
     @Value("${open.exchange.token}")
     private String openExchangeToken;
+
+    private Answer answer;
 
     @Autowired
     public StartController(OpenExchangeClient openExchangeClient, GiphyService giphyService, GsonParser parser) {
@@ -48,10 +48,6 @@ public class StartController {
     public ResponseEntity index(@PathVariable String exchange) throws ParseException {
         answer = computeExchange(exchange);
         return ResponseEntity.ok("<center><img src=\"" + answer.getUrl() + "\"><br>" + answer + "</center>");
-    }
-
-    public Answer getAnswer() {
-        return answer;
     }
 
     private Answer computeExchange(String exchange) throws ParseException {
@@ -70,10 +66,14 @@ public class StartController {
             courseYesterday = Double.parseDouble(parser.parseOpenExchange(openExchangeAnswer, exchange));
 
         } catch (Exception e) {
-            System.err.println("Invalid exchange sent");
-            return new Answer("USD", exchange, null, null, "invalid", null, "Invalid exchange");
+            return new Answer("USD", exchange, null, null, "invalid", "https://media.giphy.com/media/f6OakvYpFx3H0ShU3L/giphy.gif", "Invalid exchange");
         }
         return new Answer("USD", exchange, courseToday, courseYesterday, courseToday >= courseYesterday ? "rich" : "broke",
                 courseToday >= courseYesterday ?  parser.parseGiphy(giphyService.up(giphyToken)) :  parser.parseGiphy(giphyService.down(giphyToken)), "OK");
+    }
+
+
+    public Answer getAnswer() {
+        return answer;
     }
 }

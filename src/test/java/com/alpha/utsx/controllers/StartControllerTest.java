@@ -32,15 +32,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class StartControllerTest {
 
-
-    @Autowired
-    @MockBean
-    private OpenExchangeClient openExchangeClient;
-
-    @Autowired
-    @MockBean
-    private GiphyService giphyService;
-
     @Autowired
     private StartController startController;
 
@@ -51,25 +42,24 @@ public class StartControllerTest {
     public void openExchangeValidExchangeTest() throws Exception {
         JSONParser parser = new JSONParser();
         ResponseEntity responseEntity = startController.index("RUB");
-        System.out.println(responseEntity);
         Answer answer = startController.getAnswer();
-        Assert.assertEquals(answer.getType(), "invalid");
+        Assert.assertNotEquals(answer.getType(), "invalid");
     }
 
     @Test
-    public void GiphyTestValid() throws ParseException {
-        JSONParser parser = new JSONParser();
-        ResponseEntity responseEntity = startController.index("RUR");
-        Answer answer = startController.getAnswer();
-        Assert.assertEquals(answer.getUrl(), null);
-    }
-
-    @Test
-    public void GiphyTestInvalid() throws ParseException {
+    public void giphyTestValid() throws ParseException {
         JSONParser parser = new JSONParser();
         ResponseEntity responseEntity = startController.index("RUB");
         Answer answer = startController.getAnswer();
-        Assert.assertNull(answer.getUrl());
+        Assert.assertNotEquals(answer.getUrl(), null);
+    }
+
+    @Test
+    public void giphyTestInvalid() throws ParseException {
+        JSONParser parser = new JSONParser();
+        ResponseEntity responseEntity = startController.index("RUB");
+        Answer answer = startController.getAnswer();
+        Assert.assertNotEquals(answer.getUrl(), "https://media.giphy.com/media/f6OakvYpFx3H0ShU3L/giphy.gif");
     }
 
     @Test

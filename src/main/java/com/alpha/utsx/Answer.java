@@ -37,7 +37,6 @@ public class Answer {
                 ",<br> todayCost=" + todayCost +
                 ",<br> yesterdayCost=" + yesterdayCost +
                 ",<br> type='" + type + '\'' +
-                ",<br> url='" + url + '\'' +
                 "<br>}";
     }
 }
