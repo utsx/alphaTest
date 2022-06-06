@@ -7,6 +7,6 @@ java -jar AlphaTest.jar
 ```java
 localhost:8080/{exhange}
 ```
-<br>или отправить запрос
+или отправить запрос
 ```java
 GET localhost:8080/{exchange}
