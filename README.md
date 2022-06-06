@@ -4,8 +4,7 @@
 java -jar AlphaTest.jar
 
 Запрос отправляется по адресу
-```html 
-localhost:8080/{exhange}
+`localhost:8080/{exhange}`
 или
 ```java
 GET localhost:8080/{exchange}
