@@ -13,17 +13,24 @@ GET localhost:8080/{exchange}
 ```
 Ответ будет таким 
 ```
-gif_url
+HTTP/1.1 200 
+Content-Type: text/plain;charset=UTF-8
+Content-Length: 292
+Date: date
+Keep-Alive: timeout=60
+Connection: keep-alive
 
+<img src="{src}">
 {
 base='USD',
-askedExchange='{exchange}',
-todayCost={course},
-yesterdayCost={course},
-type='{type}'
+askedExchange='RUB',
+todayCost=61.67,
+yesterdayCost=63.250003,
+type='rich'
 }
 ```
 Где type
 * rich 
 * broke
 * invalid
+
